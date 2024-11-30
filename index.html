@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1001 APIs</title>
+  <link href="https://unpkg.com/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+
+  <style>
+    @font-face {
+      font-family: 'ASM-Regular';
+      src: url('fonts/31A5DC_3_0.eot') format('opentype'),
+           url('fonts/31A5DC_3_0.woff') format('woff'),
+           url('fonts/31A5DC_3_0.ttf') format('truetype');
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 5vh;
+      line-height: 6vh;
+      font-family: "ASM-Regular", sans-serif;
+    }
+
+    a {
+      color: #3333ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ff33cc;
+    }
+
+    small {
+      font-size: 60%;
+    }
+
+    .container {
+      scroll-snap-type: y mandatory;
+      height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+
+    section {
+      scroll-snap-align: start;
+      height: 100vh;
+      width: 100vw;
+      padding: 10vh 5vw;
+      display: flex;
+      flex-flow: column;
+      justify-content: start;
+      align-items: start;
+      text-align: center;
+    }
+
+    section.center,
+    section.cover--first,
+    section.disclaimer,
+    section.meme,
+    section.blue,
+    section.black {
+      justify-content: center;
+      align-items: center;
+    }
+
+    section.disclaimer {
+      color: #fff;
+      background-color: rgb(157, 41, 41);
+    }
+
+    section.blue {
+      color: #fff;
+      background-color: #3333ff;
+    }
+
+    section.blue a {
+      color: #fff;
+    }
+
+    section.blue a:hover {
+      color: #ff33cc;
+    }
+
+    section.black {
+      color: #fff;
+      background-color: #000;
+    }
+
+    section.cover {
+     flex-flow: row;
+     align-items: center
+    }
+
+    section.cover > * {
+      width: 35vw;
+    }
+
+    section.cover > * + * {
+      margin-left: 10vw;
+    }
+
+    section.cover > div {
+      display: flex;
+      flex-flow: column;
+    }
+
+    section.source {
+      background-color: #2d2d2d;
+    }
+
+    section.source pre {
+      text-align: left;
+      padding: 0 !important;
+      margin: 0 !important;
+      margin-top: -1em !important;
+      line-height: 1 !important;
+      font-size: 75% !important;
+    }
+
+    section.source.source--small pre {
+      line-height: 0.7 !important;
+    }
+
+    section.source pre code {
+      font-size: 70% !important;
+    }
+
+    section.source.source--small pre code {
+      font-size: 60% !important;
+    }
+
+    section.quote {
+      background-color: #eaeaea;
+      justify-content: center;
+    }
+
+    section.quote blockquote {
+      margin-left: 0;
+      text-align: left;
+      font-size: 90%;
+      line-height: 1.3;
+      margin: 4vh 0;
+    }
+
+    section.quote cite {
+      display: block;
+      font-style: normal;
+      font-size: 70%;
+      color: #666;
+      margin-top: 2vh;
+    }
+
+    section.quote em {
+      padding: 4px;
+      background-color: rgb(251, 234, 116);
+      font-style: normal;
+    }
+
+    code {
+      background-color: #ddd;
+      font-size: 90%;
+    }
+
+    img {
+      display: block;
+    }
+
+    h1 {
+      font-size: 9vh;
+      line-height: 10vh;
+    }
+
+    h2 {
+      font-size: 7vh;
+      line-height: 8vh;
+    }
+
+    h3 {
+      font-size: 5vh;
+      line-height: 8vh;
+    }
+
+    h1 + h2,
+    h2 + h3,
+    h3 + h2 {
+      margin-top: 8vh;
+    }
+
+    h2 + ul {
+      margin-top: 6vh;
+    }
+
+    ul {
+      text-align: left;
+    }
+
+    ul > li + li {
+      margin-top: 3vh;
+    }
+
+    ul ul {
+      margin-top: 3vh;
+      font-size: 70%;
+      line-height: 100%;
+    }
+
+    ul ul > li + li {
+      margin-top: 3vh;
+    }
+
+    #pagination {
+      position: fixed;
+      top: 2vh;
+      right: 2vw;
+      color: #444;
+      background-color: white;
+      font-size: 1vh;
+      line-height: 1vh;
+      padding: 0.5vh 0.25vw 0.2vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="pagination"></div>
+  <div class="container">
+    <section class="cover--first" style="position: relative">
+      <h1>Trabe</h1>
+      <img src="assets/trabe-logo.png" alt="Trabe logo" style="height: 40vh; margin: 6vh 0"/>
+      <h2>Asís & David</h2>
+
+      <div style="position:absolute; bottom: 1vh; right: 1vw; padding: 1vh 1vw; background-color: #f0f0ea; font-size: 2vh; line-height: 2vh">
+        https://trabe-teaching.github.io/1001-apis
+      </div>
+    </section>
+
+    <section>
+      <h2>Context</h2>
+      <ul>
+        <li>We develop front and back with JS (15+ years)</li>
+        <li>We have developed with many stacks: RoR, JEE, .NET</li>
+        <li>We develop frameworks for other developers</li>
+      </ul>
+    </section>
+
+    <section class="blue">
+      <h1>1001 APIs</h1>
+    </section>
+
+    <section>
+      <h2>APIs as a contract</h2>
+      <ul>
+        <li>Everything has an API</li>
+        <li>API: What a party expects from another party</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Initial requisites</h2>
+
+      <ul>
+        <li>We expose a service</li>
+        <li>Service has a request limit</li>
+      </ul>
+      <img style="align-self: center; margin-top: 4vh" src="./assets/diagram-1.png" />
+    </section>
+
+    <section>
+    </section>
+
+    <section>
+      <h2>Initial solution</h2>
+
+      <ul>
+        <li>Hard coded limit</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+const MAX_REQUESTS = 100;
+
+let requestCount = 0;
+
+function handle(request) {
+  if (requestCount > MAX_REQUESTS) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+server.use((request) => handle(request)).start();
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>New requisite: configurable max requests</h2>
+
+      <ul>
+        <li>We need a config mechanism</li>
+        <li>Alternatives: Env vars, files, configuration service, etc.</li>
+        <li>Each option implies a platform constraint: using files means we need FS access</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+const config = readYaml("path/to/config.yml");
+
+let requestCount = 0;
+
+function handle(request) {
+  if (requestCount > config.max_requests) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+server.use((request) => handle(request)).start();
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>New requisite: serveless</h2>
+
+      <ul>
+        <li>AWS lambdas configured via env vars</li>
+        <li>Does our API work?</li>
+        <li>Does our platform constraint hold?</li>
+        <li>Refactor vs workaround</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Workaround</h2>
+
+      <ul>
+        <li>We avoid breaking our API</li>
+        <li>Serverless environment: write a fake config file using the env vars</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+writeYaml("path/to/config.yml", {
+  max_requests: process.env.MAX_REQUESTS
+});
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>New requisite: cloud workers</h2>
+
+      <ul>
+        <li><strong>Breaking point!</strong></li>
+        <li>Our platform constraint no longer holds: cloud workers do not have FS access</li>
+        <li>Impossible to workaround, we have to refactor</li>
+        <li>Decouple service from config using DI</li>
+        <li>Experience may lead you to build a DI solution from the beginning</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+let requestCount = 0;
+
+function handle(request, { config }) {
+  if (requestCount > config.max_requests) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+const config = readYaml("path/to/config.yml");
+
+server.use((request) => handle(request, { config })).start();
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Side note: APIs and testing</h2>
+
+      <ul>
+        <li>Each API must be tested in its particular way</li>
+        <li>More decoupled APIs are easier to test</li>
+        <li>Sometimes you can live with "worst" tests using workarounds to have simpler code</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+test("handle max requests", () => {
+  const config = {
+    max_requests: 1,
+  };
+
+  expect(handle(mockRequest, { config })).toBe(data)
+  expect(handle(mockRequest, { config })).toThrow(500);
+  expect(handle(mockRequest, { config })).toThrow(500);
+});
+      </code></pre>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+test("handle max requests", () => {
+  writeYaml("path/to/config.yml", {
+    max_requests: 1
+  });
+
+  expect(handle(mockRequest)).toBe(data)
+  expect(handle(mockRequest)).toThrow(500);
+  expect(handle(mockRequest)).toThrow(500);
+});
+      </code></pre>
+    </section>
+
+
+    <section>
+      <h2>Dealing with API breaking changes</h2>
+
+      <ul>
+        <li>Private APIs are "easy" to break</li>
+        <li>Public APIs must be handled with care</li>
+        <li>API versioning (SemVer)</li>
+        <li>Documentation + migration guides + codemods</li>
+        <li>Deprecations</li>
+      </ul>
+    </section>
+
+    <section class="source source--small">
+      <pre><code class="language-js">
+let requestCount = 0;
+
+const deprecatedConfig = readYaml("path/to/config.yml");
+
+function handle(request, { config } = {}) {
+  if (!config) {
+    console.warn("handle with no config is deprecated");
+  }
+
+  if (requestCount > (config ?? deprecatedConfig).max_requests) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+// Deprecated
+server.use((request) => handle(request)).start();
+// vs. new
+server.use((request) => handle(request, { config: { max_requests: 10 } })).start();
+      </code></pre>
+    </section>
+
+
+    <section>
+      <h2>New requisite: dynamic config</h2>
+
+      <ul>
+        <li><code>max_requests</code> based on the request metadata</li>
+        <li>Config DSL vs config as code</li>
+        <li>Inversion of Control</li>
+      </ul>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-yaml">
+max_requests:
+  - priority: low
+    max: 10
+  - priority: high
+    max: 100
+      </code></pre>
+    </section>
+
+
+    <section class="source">
+      <pre><code class="language-js">
+let requestCount = 0;
+
+function getMaxRequests(request, config) {
+  config.max_requests.find(/* predicate */).max;
+}
+
+function handle(request, { config } = {}) {
+  if (requestCount > getMaxRequests(request, config) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+server.use((request) => handle(request, { config: /* DSL */ })).start();
+      </code></pre>
+    </section>
+
+    <section class="source">
+      <pre><code class="language-js">
+let requestCount = 0;
+
+function handle(request, { config } = {}) {
+  if (requestCount > config.getMaxRequests(request)) {
+    throw new Error(500);
+  }
+
+  requestCount++;
+
+  return data;
+}
+
+function getMaxRequests(request) {
+  return someCalculatedMaxValue;
+}
+
+server.use((request) => handle(request, { config: { getMaxRequests } })).start();
+      </code></pre>
+    </section>
+
+    <section>
+      <h2>Parting thoughts</h2>
+
+      <ul>
+        <li>Final product: result of sucessive steps. Requisites almost always change</li>
+        <li>Pragmatism vs theory: find the solution that works. Usually the basic solution is the adequate one</li>
+        <li>Beware of the environment (platform evolution, company idionsincrasies, etc).</li>
+      </ul>
+    </section>
+
+    <section class="center">
+      <h2>This was just an example</h2>
+
+      <img style="align-self: center; margin-top: 4vh" src="./assets/diagram-2.png" />
+    </section>
+
+    <section class="black">
+      <h2>Questions?</h2>
+    </section>
+  </div>
+
+  <script>
+    const observeSectionIntersection = section => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            location.assign(`#${section.id}`);
+          }
+        })
+      }, {
+        root: document.querySelector(".container"),
+        threshold: 0.5,
+      });
+
+      observer.observe(section);
+    }
+
+    document.querySelectorAll("section").forEach((section, index) => {
+      section.id = `slide-${index}`;
+
+      observeSectionIntersection(section);
+    });
+
+    const updatePagination = () => {
+      const totalPages = document.querySelectorAll("section").length;
+      const currentPage = Number(location.hash.replace("#slide-","")) + 1;
+
+      document.getElementById("pagination").innerHTML = `${currentPage}/${totalPages}`;
+    }
+
+    updatePagination();
+    window.addEventListener("hashchange", updatePagination);
+  </script>
+  <script src="https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js"></script>
+	<script src="https://unpkg.com/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
