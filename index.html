@@ -285,7 +285,7 @@ let requestCount = 0;
 
 function handle(request) {
   if (requestCount > MAX_REQUESTS) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
@@ -315,7 +315,7 @@ let requestCount = 0;
 
 function handle(request) {
   if (requestCount > config.max_requests) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
@@ -373,7 +373,7 @@ let requestCount = 0;
 
 function handle(request, { config }) {
   if (requestCount > config.max_requests) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
@@ -405,8 +405,8 @@ test("handle max requests", () => {
   };
 
   expect(handle(mockRequest, { config })).toBe(data)
-  expect(handle(mockRequest, { config })).toThrow(500);
-  expect(handle(mockRequest, { config })).toThrow(500);
+  expect(handle(mockRequest, { config })).toThrow(429);
+  expect(handle(mockRequest, { config })).toThrow(429);
 });
       </code></pre>
     </section>
@@ -419,8 +419,8 @@ test("handle max requests", () => {
   });
 
   expect(handle(mockRequest)).toBe(data)
-  expect(handle(mockRequest)).toThrow(500);
-  expect(handle(mockRequest)).toThrow(500);
+  expect(handle(mockRequest)).toThrow(429);
+  expect(handle(mockRequest)).toThrow(429);
 });
       </code></pre>
     </section>
@@ -450,7 +450,7 @@ function handle(request, { config } = {}) {
   }
 
   if (requestCount > (config ?? deprecatedConfig).max_requests) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
@@ -497,7 +497,7 @@ function getMaxRequests(request, config) {
 
 function handle(request, { config } = {}) {
   if (requestCount > getMaxRequests(request, config) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
@@ -515,7 +515,7 @@ let requestCount = 0;
 
 function handle(request, { config } = {}) {
   if (requestCount > config.getMaxRequests(request)) {
-    throw new Error(500);
+    throw new Error(429);
   }
 
   requestCount++;
